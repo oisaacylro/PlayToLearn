@@ -10,6 +10,7 @@ public class ReturnBtn : MonoBehaviour
     public CanvasGroup BGCanvas;
     public CanvasGroup PlayUICanvas;
     public Button ReturnButton;
+    private ModeSelect ModeSelect;
     private bool Disable = false;
     private string CurrentState;
 
@@ -17,6 +18,7 @@ public class ReturnBtn : MonoBehaviour
     void Start()
     {
         CurrentState = "Home";
+        ModeSelect = gameObject.GetComponent<ModeSelect>();
         ReturnButton.onClick.AddListener(Return);
     }
 
@@ -47,12 +49,13 @@ public class ReturnBtn : MonoBehaviour
             ConsistentUICanvas.alpha = BGCanvas.alpha = HomeUICanvas.alpha -= Time.deltaTime * 1f;
             yield return null;
         }
-        SceneManager.LoadScene("LoginScene");
+        SceneManager.LoadScene("Login");
     }
 
     IEnumerator ReturnToHomeFadeEnum()
     {
         BtnDisable();
+        ModeSelect.BtnDisable();
         while (PlayUICanvas.alpha > 0)
         {
             PlayUICanvas.alpha -= Time.deltaTime * 1f;

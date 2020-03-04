@@ -7,10 +7,12 @@ public class PlayBtn : MonoBehaviour
     public CanvasGroup PlayUICanvas;
     public Button PlayButton;
     private ReturnBtn ReturnBtn;
+    private ModeSelect ModeSelect;
     // Start is called before the first frame update
     void Start()
     {
         ReturnBtn = gameObject.GetComponent<ReturnBtn>();
+        ModeSelect = gameObject.GetComponent<ModeSelect>();
         PlayButton.onClick.AddListener(Play);
     }
 
@@ -37,6 +39,7 @@ public class PlayBtn : MonoBehaviour
             PlayUICanvas.alpha += Time.deltaTime * 1f;
             yield return null;
         }
+        ModeSelect.BtnEnable();
         ReturnBtn.BtnEnable();
     }
 }
