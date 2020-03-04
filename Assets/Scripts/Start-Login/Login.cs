@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class Login : MonoBehaviour
     public CanvasGroup LoginUICanvas;
     public TMP_InputField Username;
     public TMP_InputField Password;
-
-    // Start is called before the first frame update
+    public GameObject Error;
+    
     void Start()
     {
         LoginButton.onClick.AddListener(LogIn);
@@ -17,11 +18,21 @@ public class Login : MonoBehaviour
 
     private void LogIn()
     {
-        Debug.Log("Login Clicked!");
+        
+        if(CheckCredentials(Username.text, Password.text))
+        {
+            Error.gameObject.SetActive(false);
+            SceneManager.LoadScene("Home");
+        }
+        else
+            Error.SetActive(true);
 
-        Debug.Log("Username: " + Username.text);
+    }
 
-        Debug.Log("Password: " + Password.text);
-
+    private bool CheckCredentials(string U, string P)
+    {
+        if (U == "test" && P == "test")
+            return true;
+        return false;
     }
 }
