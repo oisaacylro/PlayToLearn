@@ -10,6 +10,7 @@ public class ReturnBtn : MonoBehaviour
     public CanvasGroup BGCanvas;
     public CanvasGroup PlayUICanvas;
     public Button ReturnButton;
+    private bool Disable = false;
     private string CurrentState;
 
 
@@ -21,21 +22,26 @@ public class ReturnBtn : MonoBehaviour
 
     private void Return()
     {
-        switch(CurrentState)
+        if (!Disable)
         {
-            case "Home":
-                StartCoroutine(ReturnToStartFadeEnum());
-                break;
-            case "Play":
-                StartCoroutine(ReturnToHomeFadeEnum());
-                break;
-            default:
-                break;
+            switch (CurrentState)
+            {
+                case "Home":
+                    StartCoroutine(ReturnToStartFadeEnum());
+                    break;
+                case "Play":
+                    StartCoroutine(ReturnToHomeFadeEnum());
+                    ChangeState("Home");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     IEnumerator ReturnToStartFadeEnum()
     {
+        BtnDisable();
         while (HomeUICanvas.alpha > 0)
         {
             ConsistentUICanvas.alpha = BGCanvas.alpha = HomeUICanvas.alpha -= Time.deltaTime * 1f;
@@ -46,7 +52,8 @@ public class ReturnBtn : MonoBehaviour
 
     IEnumerator ReturnToHomeFadeEnum()
     {
-        while(PlayUICanvas.alpha > 0)
+        BtnDisable();
+        while (PlayUICanvas.alpha > 0)
         {
             PlayUICanvas.alpha -= Time.deltaTime * 1f;
             yield return null;
@@ -59,8 +66,16 @@ public class ReturnBtn : MonoBehaviour
             HomeUICanvas.alpha += Time.deltaTime * 1f;
             yield return null;
         }
+        BtnEnable();
     }
-
+    public void BtnDisable()
+    {
+       Disable = true;
+    }
+    public void BtnEnable()
+    {
+       Disable = false;
+    }
     public void ChangeState(string s)
     {
         CurrentState = s;

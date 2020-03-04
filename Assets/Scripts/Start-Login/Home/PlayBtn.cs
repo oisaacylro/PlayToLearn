@@ -17,11 +17,13 @@ public class PlayBtn : MonoBehaviour
     private void Play()
     {
         ReturnBtn.ChangeState("Play");
+        ReturnBtn.BtnDisable();
         StartCoroutine(PlayFadeEnum());
     }
 
     IEnumerator PlayFadeEnum()
     {
+
         while (HomeUICanvas.alpha > 0)
         {
             HomeUICanvas.alpha -= Time.deltaTime * 1f;
@@ -35,5 +37,6 @@ public class PlayBtn : MonoBehaviour
             PlayUICanvas.alpha += Time.deltaTime * 1f;
             yield return null;
         }
+        ReturnBtn.BtnEnable();
     }
 }
