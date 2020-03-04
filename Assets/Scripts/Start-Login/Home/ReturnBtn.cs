@@ -8,19 +8,33 @@ public class ReturnBtn : MonoBehaviour
     public CanvasGroup HomeUICanvas;
     public CanvasGroup ConsistentUICanvas;
     public CanvasGroup BGCanvas;
+    public CanvasGroup PlayUICanvas;
     public Button ReturnButton;
-    // Start is called before the first frame update
+    private string CurrentState;
+
+
     void Start()
     {
+        CurrentState = "Home";
         ReturnButton.onClick.AddListener(Return);
     }
 
     private void Return()
     {
-        StartCoroutine(ReturnFadeEnum());
+        switch(CurrentState)
+        {
+            case "Home":
+                StartCoroutine(ReturnToStartFadeEnum());
+                break;
+            case "Play":
+                StartCoroutine(ReturnToHomeFadeEnum());
+                break;
+            default:
+                break;
+        }
     }
 
-    IEnumerator ReturnFadeEnum()
+    IEnumerator ReturnToStartFadeEnum()
     {
         while (HomeUICanvas.alpha > 0)
         {
@@ -29,9 +43,26 @@ public class ReturnBtn : MonoBehaviour
         }
         SceneManager.LoadScene("LoginScene");
     }
-    // Update is called once per frame
-    void Update()
+
+    IEnumerator ReturnToHomeFadeEnum()
     {
-        
+        while(PlayUICanvas.alpha > 0)
+        {
+            PlayUICanvas.alpha -= Time.deltaTime * 1f;
+            yield return null;
+        }
+        PlayUICanvas.gameObject.SetActive(false);
+        HomeUICanvas.alpha = 0;
+        HomeUICanvas.gameObject.SetActive(true);
+        while (HomeUICanvas.alpha < 1)
+        {
+            HomeUICanvas.alpha += Time.deltaTime * 1f;
+            yield return null;
+        }
+    }
+
+    public void ChangeState(string s)
+    {
+        CurrentState = s;
     }
 }
