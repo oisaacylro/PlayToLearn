@@ -442,8 +442,9 @@ GameObject:
   - component: {fileID: 265226171}
   - component: {fileID: 265226170}
   - component: {fileID: 265226169}
+  - component: {fileID: 265226173}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,6 +531,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &265226173
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265226168}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &289871689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,6 +1992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoginButton: {fileID: 110742537}
   LoginUICanvas: {fileID: 1887665536}
+  UICanvas: {fileID: 265226173}
   Username: {fileID: 1272188359}
   Password: {fileID: 1803696720}
   Error: {fileID: 1980424108}
