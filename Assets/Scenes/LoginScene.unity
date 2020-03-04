@@ -1924,6 +1924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860057767}
   - component: {fileID: 1860057768}
+  - component: {fileID: 1860057769}
   m_Layer: 5
   m_Name: LoginController
   m_TagString: Untagged
@@ -1964,6 +1965,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartText: {fileID: 1377801518}
   LoginUICanvas: {fileID: 1887665536}
+--- !u!114 &1860057769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860057766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3e736912d1ba54b943c5da282fb500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoginButton: {fileID: 110742537}
+  LoginUICanvas: {fileID: 1887665536}
+  Username: {fileID: 1272188359}
+  Password: {fileID: 1803696720}
 --- !u!1 &1887665531
 GameObject:
   m_ObjectHideFlags: 0
