@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class WorldSelectUI : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class WorldSelectUI : MonoBehaviour
     public Button World4Button;
     public Button ReturnButton;
     private ConsistentObject ConsistentObj;
+    public TMP_Text ModeLabel;
     private bool Disable = true;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,19 @@ public class WorldSelectUI : MonoBehaviour
                     break;
             }
         }
+
+        switch(ConsistentObj.getSelectedMode())
+        {
+            case 0:
+                ModeLabel.SetText("Adventure");
+                break;
+            case 1:
+                ModeLabel.SetText("Free Play");
+                break;
+            default:
+                break;
+        }
+
         World1Button.onClick.AddListener(WorldSelected1);
         World2Button.onClick.AddListener(WorldSelected2);
         World3Button.onClick.AddListener(WorldSelected3);
