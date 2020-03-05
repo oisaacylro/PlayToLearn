@@ -1,4 +1,20 @@
-# PlayToLearn
+###PlayToLearn
+
+##How to test:
+ #Step 1
+ 
+ Ensure that only Login scene is loaded.
+ 
+ #Step 2
+ 
+ Press Space on pc or tap on android to start
+ 
+ #Step 3
+ 
+ Username: test
+ Password: test
+ 
+ 
  
 To do list:
 
