@@ -20,6 +20,7 @@ public class BattleScript : MonoBehaviour
     private int correctAnswer;
     private ConsistentObject ConsistentObj;
     private NodeSpawning ns;
+    private bool disable = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,7 @@ public class BattleScript : MonoBehaviour
 
     private void BattleNodeClicked()
     {
+        disable = false;
         enemyHealth = 10;
         EnemyHealth.text = "Enemy:\n" + enemyHealth.ToString();
         Health.text = "Health:\n" + ConsistentObj.getHealth().ToString();
@@ -94,37 +96,42 @@ public class BattleScript : MonoBehaviour
 
     private void CheckAnswer(int i)
     {
-        if(i == correctAnswer)
+        if (!disable)
         {
-            //correct
-            enemyHealth -= 5;
-            EnemyHealth.text = "Enemy:\n" + enemyHealth.ToString();
-        }
+            if (i == correctAnswer)
+            {
+                //correct
+                enemyHealth -= 5;
+                EnemyHealth.text = "Enemy:\n" + enemyHealth.ToString();
+            }
 
-        else
-        {
-            //wrong
-            ConsistentObj.setHealth(ConsistentObj.getHealth() - 5);
-            Health.text = "Health:\n" + ConsistentObj.getHealth().ToString();
+            else
+            {
+                //wrong
+                ConsistentObj.setHealth(ConsistentObj.getHealth() - 5);
+                Health.text = "Health:\n" + ConsistentObj.getHealth().ToString();
 
-        }
+            }
 
-        if(ConsistentObj.getHealth() <= 0)
-        {
-            //gameover
-            GameOverLabel.SetActive(true);
-            StartCoroutine(GameOverFade());
-        }
-        else if(enemyHealth <= 0)
-        {
-            //win
-            VictoryLabel.SetActive(true);
-            ns.nextLevel();
-            StartCoroutine(VictoryFade());
-        }
-        else
-        {
-            GenerateQuestion();
+            if (ConsistentObj.getHealth() <= 0)
+            {
+                disable = true;
+                //gameover
+                GameOverLabel.SetActive(true);
+                StartCoroutine(GameOverFade());
+            }
+            else if (enemyHealth <= 0)
+            {
+                disable = true;
+                //win
+                VictoryLabel.SetActive(true);
+                ns.nextLevel();
+                StartCoroutine(VictoryFade());
+            }
+            else
+            {
+                GenerateQuestion();
+            }
         }
     }
 

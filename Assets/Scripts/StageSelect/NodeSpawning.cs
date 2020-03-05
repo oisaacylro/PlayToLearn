@@ -13,6 +13,9 @@ public class NodeSpawning : MonoBehaviour
     public GameObject NodeContainer;
 
     private BattleScript bs;
+    private RestScript rs;
+    private EventScript es;
+    private ShopScript ss;
 
     //0: Blank, 1:Battle, 2:Event, 3:Rest, 4:Shop, 5:Boss
     private int[,] NodeTypes;
@@ -25,6 +28,9 @@ public class NodeSpawning : MonoBehaviour
     void Start()
     {
         bs = gameObject.GetComponent<BattleScript>();
+        rs = gameObject.GetComponent<RestScript>();
+        es = gameObject.GetComponent<EventScript>();
+        ss = gameObject.GetComponent<ShopScript>();
         currentLevel = 0;
         stageHeight = 8;
         stageLength = 3;
@@ -66,12 +72,15 @@ public class NodeSpawning : MonoBehaviour
                         break;
                     case int n when n <= 80 && n >= 71 :
                         Levels[y, x] = Instantiate(EventNode, new Vector3(0, 0, 0), Quaternion.identity);
+                        es.LinkEventNode(Levels[y, x].GetComponent<Button>());
                         break;
                     case int n when n <= 90 && n >= 81 :
                         Levels[y, x] = Instantiate(RestNode, new Vector3(0, 0, 0), Quaternion.identity);
+                        rs.LinkRestNode(Levels[y, x].GetComponent<Button>());
                         break;
                     case int n when n <= 100 && n >=91 :
                         Levels[y, x] = Instantiate(ShopNode, new Vector3(0, 0, 0), Quaternion.identity);
+                        ss.LinkShopNode(Levels[y, x].GetComponent<Button>());
                         break;
                     default:
                         Levels[y, x] = Instantiate(EmptyNode, new Vector3(0,0,0), Quaternion.identity);
@@ -90,6 +99,7 @@ public class NodeSpawning : MonoBehaviour
             Levels[stageHeight - 1, x].gameObject.name = "Node" + (stageHeight - 1) + x;
             Levels[stageHeight - 1, x].transform.SetParent(NodeContainer.transform);
             Levels[stageHeight - 1, x].transform.SetPositionAndRotation((Levels[(stageHeight - 1), x].transform.parent.position + new Vector3((x * 420) - 420, ((stageHeight-1) * 600) - 2400, 0)), Quaternion.identity);
+            rs.LinkRestNode(Levels[stageHeight - 1, x].GetComponent<Button>());
         }
 
         //Boss
@@ -117,7 +127,7 @@ public class NodeSpawning : MonoBehaviour
 
     public void nextLevel()
     {
-        if (currentLevel == stageHeight)
+        if (currentLevel == stageHeight-1)
         {
             Levels[currentLevel, 0].GetComponent<Button>().interactable = false;
             Levels[currentLevel, 1].GetComponent<Button>().interactable = false;
