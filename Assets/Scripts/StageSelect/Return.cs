@@ -48,4 +48,20 @@ public class Return : MonoBehaviour
         SceneManager.LoadScene("WorldSelect");
     }
 
+    public void endStage()
+    {
+        ReturnConfirmationCanvas.gameObject.SetActive(false);
+        StartCoroutine(FadeOutEndStage());
+    }
+
+
+    IEnumerator FadeOutEndStage()
+    {
+        while (StageSelectUI.alpha > 0)
+        {
+            StageSelectUI.alpha = StageSelectNodes.alpha -= Time.deltaTime * 1f;
+            yield return null;
+        }
+        SceneManager.LoadScene("Home");
+    }
 }

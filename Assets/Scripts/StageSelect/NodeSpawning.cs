@@ -16,6 +16,7 @@ public class NodeSpawning : MonoBehaviour
     private RestScript rs;
     private EventScript es;
     private ShopScript ss;
+    private BossScript bss;
 
     //0: Blank, 1:Battle, 2:Event, 3:Rest, 4:Shop, 5:Boss
     private int[,] NodeTypes;
@@ -31,6 +32,7 @@ public class NodeSpawning : MonoBehaviour
         rs = gameObject.GetComponent<RestScript>();
         es = gameObject.GetComponent<EventScript>();
         ss = gameObject.GetComponent<ShopScript>();
+        bss = gameObject.GetComponent<BossScript>();
         currentLevel = 0;
         stageHeight = 8;
         stageLength = 3;
@@ -108,6 +110,7 @@ public class NodeSpawning : MonoBehaviour
         Levels[stageHeight, 1].transform.SetParent(NodeContainer.transform);
         Levels[stageHeight, 1].transform.SetPositionAndRotation((Levels[stageHeight, 1].transform.parent.position + new Vector3((1 * 420) - 420, (stageHeight * 600) - 2400, 0)), Quaternion.identity);
         Levels[stageHeight, 1].GetComponent<Button>().interactable = false;
+        bss.LinkBossNode(Levels[stageHeight, 1].GetComponent<Button>());
         //Disable nodes above first row
         for (int y = 1; y < stageHeight; y++)
         {
