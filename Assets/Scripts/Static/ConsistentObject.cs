@@ -2,21 +2,39 @@
 
 public class ConsistentObject : MonoBehaviour
 {
-    private string selectedMode;
+    //This is the consistent object that will be alive throughout the entire playthrough
+    //It will contain all the necessary information that other scenes may need as well
+    //Static object thus only one can exist
 
-    // Start is called before the first frame update
+    //Variables to track
+    private int SelectedMode;//Adventure = 0; Freeplay = 1;
+    private int SelectedWorld; //1 , 2 , 3 or 4
+    
     void Start()
     {
+        //Do not destroy this object on changing scenes.
         DontDestroyOnLoad(this);
     }
     
-    public string getSelectedMode()
+    //getters and setters
+
+    public int getSelectedMode()
     {
-        return selectedMode;
+        return SelectedMode;
     }
 
-    public void setSelectedMode(string s)
+    public void setSelectedMode(int i)
     {
-        selectedMode = s;
+        SelectedMode = i;
+    }
+
+    public int setSelectedWorld()
+    {
+        return SelectedWorld;
+    }
+
+    public void setSelectedWorld(int i)
+    {
+        SelectedWorld = i;
     }
 }

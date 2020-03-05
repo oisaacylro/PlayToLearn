@@ -2761,7 +2761,6 @@ GameObject:
   - component: {fileID: 1989222479}
   - component: {fileID: 1989222480}
   - component: {fileID: 1989222481}
-  - component: {fileID: 1989222482}
   - component: {fileID: 1989222483}
   m_Layer: 0
   m_Name: HomeController
@@ -2799,6 +2798,8 @@ MonoBehaviour:
   HomeUICanvas: {fileID: 1174342361}
   ConsistentUICanvas: {fileID: 1144748918}
   BGCanvas: {fileID: 1669099469}
+  PlayUICanvas: {fileID: 1411683037}
+  PlayButton: {fileID: 86276768}
 --- !u!114 &1989222481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2816,21 +2817,6 @@ MonoBehaviour:
   BGCanvas: {fileID: 1669099469}
   PlayUICanvas: {fileID: 1411683037}
   ReturnButton: {fileID: 1658629056}
---- !u!114 &1989222482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989222478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 385b4ac6741455a44bd9ffe94b281d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HomeUICanvas: {fileID: 1174342361}
-  PlayUICanvas: {fileID: 1411683037}
-  PlayButton: {fileID: 86276768}
 --- !u!114 &1989222483
 MonoBehaviour:
   m_ObjectHideFlags: 0
