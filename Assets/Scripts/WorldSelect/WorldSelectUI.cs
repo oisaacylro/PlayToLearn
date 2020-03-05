@@ -71,9 +71,9 @@ public class WorldSelectUI : MonoBehaviour
     {
         if (!Disable)
         {
-            Debug.Log("World " + i + " Selected!");
             setDisable(true);
             ConsistentObj.setSelectedWorld(i);
+            ConsistentObj.setHealth(10);
             StartCoroutine(FadeOutWordSelect());
         }
 

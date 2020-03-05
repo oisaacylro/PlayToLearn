@@ -9,7 +9,8 @@ public class ConsistentObject : MonoBehaviour
     //Variables to track
     private int SelectedMode;//Adventure = 0; Freeplay = 1;
     private int SelectedWorld; //1 , 2 , 3 or 4
-    
+    private int Health;
+    private int Score;
     void Start()
     {
         //Do not destroy this object on changing scenes.
@@ -28,7 +29,7 @@ public class ConsistentObject : MonoBehaviour
         SelectedMode = i;
     }
 
-    public int setSelectedWorld()
+    public int getSelectedWorld()
     {
         return SelectedWorld;
     }
@@ -36,5 +37,25 @@ public class ConsistentObject : MonoBehaviour
     public void setSelectedWorld(int i)
     {
         SelectedWorld = i;
+    }
+
+    public int getHealth()
+    {
+        return Health;
+    }
+
+    public void setHealth(int i)
+    {
+        Health = i;
+    }
+
+    public int getScore()
+    {
+        return Score;
+    }
+
+    public void setScore(int i)
+    {
+        Score = i;
     }
 }
