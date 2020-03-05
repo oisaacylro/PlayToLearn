@@ -20,12 +20,12 @@ public class NodeSpawning : MonoBehaviour
 
     private int stageHeight;
     private int stageLength;
-    private int currentLevel = 0;
+    private int currentLevel;
 
     void Start()
     {
         bs = gameObject.GetComponent<BattleScript>();
-
+        currentLevel = 0;
         stageHeight = 8;
         stageLength = 3;
         Levels = new GameObject[stageHeight+1, stageLength];
@@ -117,11 +117,22 @@ public class NodeSpawning : MonoBehaviour
 
     public void nextLevel()
     {
-        for(int i = 0; i < stageLength; i++)
+        if (currentLevel == stageHeight)
         {
-            Levels[currentLevel, i].GetComponent<Button>().interactable = false;
-            Levels[currentLevel+1, i].GetComponent<Button>().interactable = true;
-
+            Levels[currentLevel, 0].GetComponent<Button>().interactable = false;
+            Levels[currentLevel, 1].GetComponent<Button>().interactable = false;
+            Levels[currentLevel, 2].GetComponent<Button>().interactable = false;
+            Levels[currentLevel + 1, 1].GetComponent<Button>().interactable = true;
         }
+        else
+        {
+            for (int i = 0; i < stageLength; i++)
+            {
+                Levels[currentLevel, i].GetComponent<Button>().interactable = false;
+                Levels[currentLevel + 1, i].GetComponent<Button>().interactable = true;
+
+            }
+        }
+        currentLevel++;
     }
 }

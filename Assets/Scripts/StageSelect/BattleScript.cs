@@ -24,7 +24,6 @@ public class BattleScript : MonoBehaviour
     void Start()
     {
         ns = gameObject.GetComponent<NodeSpawning>();
-        enemyHealth = 10;
         Answer1.onClick.AddListener(Ans1);
         Answer2.onClick.AddListener(Ans2);
         Answer3.onClick.AddListener(Ans3);
@@ -53,6 +52,7 @@ public class BattleScript : MonoBehaviour
 
     private void BattleNodeClicked()
     {
+        enemyHealth = 10;
         EnemyHealth.text = "Enemy:\n" + enemyHealth.ToString();
         Health.text = "Health:\n" + ConsistentObj.getHealth().ToString();
         GenerateQuestion();
