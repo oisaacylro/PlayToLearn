@@ -19,11 +19,14 @@ public class Login : MonoBehaviour
 
     //Error message for wrong input
     public GameObject Error;
-    
+      
+    public PersonController PCA;
+
     void Start()
     {
         //Link login button to the function
         LoginButton.onClick.AddListener(LogIn);
+
     }
 
     private void LogIn()
@@ -58,8 +61,6 @@ public class Login : MonoBehaviour
     //eventually use this to connect to db and check
     private bool CheckCredentials(string U, string P)
     {
-        if (U == "test" && P == "test")
-            return true;
-        return false;
+        return PCA.validateLogin(U, P);
     }
 }
